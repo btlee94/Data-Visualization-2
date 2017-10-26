@@ -1,6 +1,7 @@
 ﻿/**
 *   createTree() adapted from https://bl.ocks.org/mbostock/4339083
 *   petalPath() adapted from http://bl.ocks.org/herrstucki/6199768
+*   wrap() adapted from https://bl.ocks.org/mbostock/7555321
 **/
 
 
@@ -89,7 +90,7 @@ function createTree() {
             .attr("id", function (d) { return "node" + d.data.code; })
             .attr('r', 1e-6)
             .style("fill", function (d) {
-                return d._children ? "#66BB6A" : "#fff";
+                return d._children ? "#FF3D00" : "#FAFAFA";
             });
 
         // Add labels for the nodes
@@ -101,7 +102,8 @@ function createTree() {
             .attr("text-anchor", function (d) {
                 return d.children || d._children ? "end" : "start";
             })
-            .text(function (d) { return d.data.name; });
+            .text(function (d) { return d.data.name; })
+            .call(wrap, 150);
 
         // UPDATE
         var nodeUpdate = nodeEnter.merge(node);
@@ -117,7 +119,7 @@ function createTree() {
         nodeUpdate.select('circle.node')
           .attr('r', 10)
           .style("fill", function (d) {
-              return d._children ? "#66BB6A" : "#fff";
+              return d._children ? "#FF3D00" : "#FAFAFA";
           })
           .attr('cursor', 'pointer');
 
@@ -151,7 +153,7 @@ function createTree() {
                 var o = { x: source.x0, y: source.y0 }
                 return diagonal(o, o)
             })
-              .style("stroke", "#795548");
+              .style("stroke", "#FF3D00");
 
         // UPDATE
         var linkUpdate = linkEnter.merge(link);
@@ -239,7 +241,7 @@ function updateFlower(code) {
         
         svg2.selectAll(".petal")
             .data(pie(d))
-            .transition().duration(900)
+            .transition().duration(600)
             .attr("transform", function (d) { return r((d.startAngle + d.endAngle) / 2); })
             .attr("d", petalPath);
 
@@ -294,6 +296,39 @@ function polarToCartesian(angle, radius) {
         x: Math.cos(angle) * radius,
         y: Math.sin(angle) * radius
     };
+}
+
+function wrap(text, width) {
+    text.each(function () {
+        var text = d3.select(this),
+            words = text.text().split(/\s+/).reverse(),
+            word,
+            line = [],
+            lineNumber = 0,
+            lineHeight = 1.1, // ems
+            x = text.attr('x'),
+            y = text.attr('y'),
+            dy = 0, //parseFloat(text.attr('dy')),
+            tspan = text.text(null)
+                .append('tspan')
+                .attr('x', x)
+                .attr('y', y)
+                .attr('dy', dy + 'em');
+        while (word = words.pop()) {
+            line.push(word);
+            tspan.text(line.join(' '));
+            if (tspan.node().getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(' '));
+                line = [word];
+                tspan = text.append('tspan')
+                    .attr('x', x)
+                    .attr('y', y)
+                    .attr('dy', lineHeight + dy + 'em')
+                    .text(word);
+            }
+        }
+    });
 }
 
 

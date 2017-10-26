@@ -1,42 +1,49 @@
 ﻿<!DOCTYPE html>
 <style>
     body {
-        background-color: #fafafa;
+        background-color: #FAFAFA;
+        background: -webkit-linear-gradient(left top, #311B92, #00897B); /* For Safari 5.1 to 6.0   #64FFDA, #00897B*/
+        background: -o-linear-gradient(bottom right, #311B92, #00897B); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(bottom right, #4527A0, #37474F); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to bottom right, #37474F, #6A1B9A); /* Standard syntax */
     }
     h1 {
-        color: #c9d0d4;
-        font-family: 'Helvetica Neue', sans-serif;
+        color: #FAFAFA;
+        font-family: 'Raleway', sans-serif;
         font-size: 46px;
         font-weight: 100;
         text-align: center;
         line-height: 50px;
         letter-spacing: 1px;
         padding: 0 0 40px;
-        border-bottom: double #555;
+        border-bottom: double #BDBDBD;
     }
 
     .tip {
-        background: #fafafa;
-        box-shadow: 0 0 2px #808080;
-        font-size: 15px;
-        font-family: 'Verdana', sans-serif;
+        background: #FAFAFA;
+        color: #212121;
+        font-size: 18px;
+        font-family: 'Raleway', sans-serif;
         display: none;
-        padding: 10px; 
-        position: absolute; 
-        text-align: center; 
-        width: 80px; 
+        padding: 10px;
+        position: absolute;
+        text-align: center;
+        width: 80px;
+        border-radius: 6px;
         z-index: 10;
         left: 90%;
     }
 
     .node circle {
-        fill: #fff;
-        stroke: #66BB6A;
+        fill: #FAFAFA;
+        stroke: #FF3D00;
         stroke-width: 3px;
     }
 
     .node text {
-        font: 12px sans-serif;
+        fill: #FAFAFA;
+        font-family: 'Raleway', sans-serif;
+        font-size: 12px;
     }
 
     .link {
@@ -59,10 +66,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
 </head>
 <body>
-    <h1>United Kingdom Food Trends</h1>
+    <h1>United Kingdom food trends</h1>
     <div class="container1" id="tree"></div>
     <div class="container2" id="flower"></div>
     <script src="d3.v4.js"></script>
