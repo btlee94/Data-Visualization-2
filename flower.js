@@ -12,9 +12,9 @@ var treeData = tdata;
 
 // Set the dimensions and margins of the diagram
 var margin = { top: 20, right: 90, bottom: 30, left: 90 };
-var width = window.innerWidth - margin.left - margin.right;
-var height = window.innerHeight - margin.top - margin.bottom;
-var halfRadius = Math.min(width, height) / 3;
+var width = screen.width;
+var height = screen.height;
+var halfRadius = Math.min(width, height) / 3.5;
 
 
 createTree();
@@ -200,6 +200,8 @@ function createTree() {
             }
             update(d);
             updateFlower(d.data.code);
+            flowerHeader.innerText = d.data.name;
+            flowerFooter.innerText = d.data.name;
         }
     }
 }
@@ -263,13 +265,18 @@ function updateFlower(code) {
             .attr("class", "year");
         tip.append("div")
             .attr("class", "value");
-        svg2.selectAll(".petal").on("mouseover", function (d) {
+        svg2.selectAll(".petal")
+            .on("mouseover", function (d) {
             tip.select(".year").html("Year: " + d.data.year);
             tip.select(".value").html("Quantity: " + d.data[code] + " " + unit);
             tip.style("display", "block");
         })
         .on("mouseout", function (d) {
             tip.style("display", "none");
+        })
+        .on('mousemove', function (d) {
+            tip.style('top', (d3.event.layerY - 110) + 'px')
+              .style('left', (d3.event.layerX + 10) + 'px');
         });
 
     });
