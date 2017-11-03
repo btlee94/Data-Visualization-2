@@ -1275,10 +1275,6 @@ var tdata =
                               "code": "283"
                           },
                           {
-                              "name": "Tea and coffee from takeaway",
-                              "code": "284"
-                          },
-                          {
                               "name": "Cocoa and chocolate drinks",
                               "code": "285"
                           },
@@ -1308,10 +1304,6 @@ var tdata =
                           {
                               "name": "Soups, dehydrated or powdered",
                               "code": "291"
-                          },
-                          {
-                              "name": "Soups from takeaway",
-                              "code": "292"
                           },
                           {
                               "name": "Spreads and dressings",
@@ -1382,16 +1374,7 @@ var tdata =
                           {
                               "name": "Salt",
                               "code": "308"
-                          },
-                          {
-                              "name": "Other takeaway food brought home",
-                              "code": "309"
-                          },
-                          {
-                              "name": "Meals on wheels, items not specified",
-                              "code": "310"
                           }
-
             ]
         },
         {
@@ -1450,10 +1433,6 @@ var tdata =
                           {
                               "name": "Fudges, toffees, caramels",
                               "code": "323"
-                          },
-                          {
-                              "name": "Takeaway confectionery",
-                              "code": "324"
                           }
 
             ]
